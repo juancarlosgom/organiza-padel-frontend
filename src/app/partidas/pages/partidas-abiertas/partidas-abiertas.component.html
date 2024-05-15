@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    @if (openGames.length > 0) {
+    @for (game of openGames; track $index) {
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-body d-flex">
+          <div class="col-md-6">
+            <h5 class="card-title">Pista: {{ game.idPista }}</h5>
+            <p class="card-text"><strong>Categoría:</strong> {{ game.categoria }}</p>
+            <p class="card-text"><strong>Género:</strong> {{ game.genero }}</p>
+            <p class="card-text"><strong>Fecha:</strong> {{ game.fecha }}</p>
+            <p class="card-text"><strong>Hora de Inicio:</strong> {{ game.horaInicio }}</p>
+            <p class="card-text"><strong>Hora de Fin:</strong> {{ game.horaFin }}</p>
+            <p class="card-text"><strong>Puntuación de Ranking:</strong> {{ game.puntosRanking }}</p>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column">
+              <p class="mb-2"><strong>Jugadores:</strong></p>
+              @if (game.jugador1) {
+              <p class="mb-2">{{ 'Apellido: '+game.apellidos1+'. Categoría: '+
+                game.cat1+'º. Posición: '+game.pos1+'. Género: '+game.g1+'.' }}
+              </p>
+              }@else{
+              <button class="btn btn-success mb-2" (click)="signUpGame(game.idPartida,1)">Apuntarme</button>
+              }
+              @if (game.jugador2) {
+              <p class="mb-2">{{ 'Apellido: '+game.apellidos2+'. Categoría: '+
+                game.cat2+'º. Posición: '+game.pos2+'. Género: '+game.g2+'.' }}
+              </p>
+              }@else{
+              <button class="btn btn-success mb-2" (click)="signUpGame(game.idPartida,2)">Apuntarme</button>
+              }
+              @if (game.jugador3) {
+              <p class="mb-2">{{ 'Apellido: '+game.apellidos3+'. Categoría: '+
+                game.cat3+'º. Posición: '+game.pos3+'. Género: '+game.g3+'.'}}
+              </p>
+              }@else{
+              <button class="btn btn-success mb-2" (click)="signUpGame(game.idPartida,3)">Apuntarme</button>
+              }
+              @if (game.jugador4) {
+              <p class="mb-2">{{ 'Apellido: '+game.apellidos4+'. Categoría: '+
+                game.cat4+'º. Posición: '+game.pos4+'. Género: '+game.g4+'.' }}
+              </p>
+              }@else{
+              <button class="btn btn-success mb-2" (click)="signUpGame(game.idPartida,4)">Apuntarme</button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+    }@else {
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">No hay partidas abiertas</h5>
+              <p class="card-text">En estos momentos no hay partidas disponibles para unirse.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

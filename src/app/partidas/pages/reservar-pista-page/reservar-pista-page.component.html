@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="fecha-actual" class="text-center">
+        <!--<button (click)="retrocederDia()">Anterior</button>
+        {{ fechaMostrar }}
+        <button (click)="avanzarDia()">Siguiente</button>-->
+        <input type="date" [(ngModel)]="fechaActualizada" (change)="updateDate()">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    @for (pista of pistas; track $index) {
+    <div class="col-md-3">
+      <div class="mt-4">
+        <h2>Pista {{ pista.idPista }}</h2>
+        <div class="row">
+          @for (horario of pista.horario; track $index) {
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ horario.horaInicio }} - {{ horario.horaFin}}</h5>
+                @if(horario.reservado){
+                <button class="card-text bg-danger">No disponible</button>
+                }@else {
+                <button class="card-text bg-success"
+                  (click)="reserveTrack(horario.horaInicio, horario.horaFin, pista.idPista)">Reservar</button>
+                }
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="container text-center mt-5">
+  <div class="row align-items-start">
+    <div class="col-6 p-100">
+      <img class="h-100 w-100" src="https://allforpadel.com/img/cms/pistas/fx2-1.jpg">
+    </div>
+    <div class="col-6 h-100 w-50">
+      <form (ngSubmit)="register()" [formGroup]="myForm" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" formControlName="nombre">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Apellidos</label>
+          <input type="text" class="form-control" formControlName="apellidos">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">D.N.I</label>
+          <input type="text" class="form-control" formControlName="dni">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Teléfono</label>
+          <input type="tel" class="form-control" formControlName="telefono">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Posición</label>
+          <select class="form-select" formControlName="posicionPista">
+            <option value="ambas">Indififerente</option>
+            <option value="derecha">Drive</option>
+            <option value="reves">Revés</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Talla camiseta</label>
+          <select class="form-select" formControlName="tallaCamiseta">
+            <option value="xs">XS</option>
+            <option value="s">S</option>
+            <option value="m">M</option>
+            <option value="l">L</option>
+            <option value="xl">XL</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" formControlName="passwordConfirm">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Categoría</label>
+          <select class="form-select" formControlName="categoria">
+            <option value="1">1º</option>
+            <option value="2">2º</option>
+            <option value="3">3º</option>
+            <option value="4">4º</option>
+            <option value="5">5º</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Género</label>
+          <select class="form-select" formControlName="genero">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="accept">
+            <label class="form-check-label">
+              Accept
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

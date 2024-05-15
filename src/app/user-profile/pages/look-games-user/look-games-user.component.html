@@ -1,0 +1,132 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col md-6">
+      <h2>Partidas</h2>
+      @if(openGames.length !== 0){
+      @for (game of openGames; track $index) {
+      <div class="card">
+        <div class="card-header">
+          Detalles de la Partida
+          <button class="btn btn-danger" (click)="deleteUserOpenGame(game.idPartida!,game.player!)">No puedo
+            asistir</button>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-evenly"><strong>Pista:</strong> {{game.idPista}}
+              <strong>Categoría:</strong> {{game.categoria}}º
+              <strong>Género:</strong>{{game.genero}}
+            </li>
+            <li class="list-group-item d-flex justify-content-evenly"><strong>Fecha:</strong> {{game.fecha}}
+              <strong>Hora:</strong> {{game.horaInicio}} - {{game.horaFin}}
+            </li>
+            <li class="list-group-item d-flex justify-content-evenly">
+              <span [class]="game.jugador1 === null ? 'text-success' : ''">
+                <strong>Jugador 1:</strong>
+                @if (game.jugador1 === null) {
+                Libre
+                }@else {
+                {{game.apellidos1}}. <strong>Cat: </strong>{{game.cat1}}º
+                <strong>Pos: </strong>{{game.pos1}}.
+                <strong>G: </strong>{{game.g1}}.
+                }
+                <!--{{game.jugador1 === null ? 'Libre': game.apellidos1+'. Cat: '+game.cat1+
+                'º. Pos: '+game.pos1+'.'}}-->
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-evenly">
+              <span [class]="game.jugador2 === null ? 'text-success' : ''">
+                <strong>Jugador 2:</strong>
+                @if (game.jugador2 === null) {
+                Libre
+                }@else {
+                {{game.apellidos2}}. <strong>Cat: </strong>{{game.cat2}}º
+                <strong>Pos: </strong>{{game.pos2}}.
+                <strong>G: </strong>{{game.g2}}.
+                }
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-evenly">
+              <span [class]="game.jugador3 === null ? 'text-success' : ''">
+                <strong>Jugador 3:</strong>
+                @if (game.jugador3 === null) {
+                Libre
+                }@else {
+                {{game.apellidos3}}. <strong>Cat: </strong>{{game.cat3}}º
+                <strong>Pos: </strong>{{game.pos3}}.
+                <strong>G: </strong>{{game.g3}}.
+                }
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-evenly">
+              <span [class]="game.jugador4 === null ? 'text-success' : ''">
+                <strong>Jugador 4:</strong>
+                @if (game.jugador4 === null) {
+                Libre
+                }@else {
+                {{game.apellidos4}}. <strong>Cat: </strong>{{game.cat4}}º
+                <strong>Pos: </strong>{{game.pos4}}.
+                <strong>G: </strong>{{game.g4}}.
+                }
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-evenly">
+              <strong>Puntos de Ranking:</strong> 50
+              <strong>Partida Cerrada:</strong>
+              <span [class]="game.cerrada === 1 ? 'text-success' : 'text-danger'">
+                {{game.cerrada === 1 ? 'Sí' : 'No' }}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      }
+      }@else {
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">No tienes partidas abiertas</h5>
+                <p class="card-text">En estos momentos no hay partidas futuras donde estes inscrito.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="col-md-6">
+      <h2>Partidas Reservadas</h2>
+      @if (reserveGames.length !== 0) {
+      @for (game of reserveGames; track $index) {
+      <div class="card">
+        <div class="card-header">
+          Detalles de la reserva
+          <button class="btn btn-danger" (click)="deleteReserve(game.idReserva)">Eliminar reserva</button>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Pista:</strong> {{game.idPista}}</li>
+            <li class="list-group-item"><strong>Fecha:</strong> {{game.fecha}}</li>
+            <li class="list-group-item"><strong>Hora::</strong> {{game.horaInicio}} - {{game.horaFin}}</li>
+          </ul>
+        </div>
+      </div>
+      }
+      }@else {
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">No tienes pistas reservadas.</h5>
+                <p class="card-text">En estos momentos no tienes reservas de pista.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

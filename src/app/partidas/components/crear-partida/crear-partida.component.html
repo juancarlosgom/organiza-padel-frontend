@@ -1,0 +1,115 @@
+<div class="container text-center mt-2 mb-2">
+  <div class="row justify-content-center vh-60">
+    <div class="col-md-10">
+      <div class="card p-4 shadow">
+        <h2 class="mb-4">Registro de Partida</h2>
+        <form (ngSubmit)="registerGame()" [formGroup]="myForm">
+          <div class="card mb-3">
+            <div class="row g-3">
+              <h3>Jugador 1</h3>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
+              </div>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="email" placeholder="email@jugador.com">
+              </div>
+              <div class="col-md-4">
+                <select class="form-select" formControlName="posicion">
+                  <option value="" selected disabled>Posición</option>
+                  <option value="ambas">Indififerente</option>
+                  <option value="derecha">Drive</option>
+                  <option value="reves">Revés</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="card mb-3">
+            <div class="row g-3">
+              <h3>Jugador 2</h3>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="nombre2" placeholder="Nombre">
+              </div>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="email2" placeholder="email@jugador.com">
+              </div>
+              <div class="col-md-4">
+                <select class="form-select" formControlName="posicion2">
+                  <option value="" selected disabled>Posición</option>
+                  <option value="indiferente">Indififerente</option>
+                  <option value="derecha">Drive</option>
+                  <option value="reves">Revés</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <div class="row g-3">
+              <h3>Jugador 3</h3>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="nombre3" placeholder="Nombre">
+              </div>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="email3" placeholder="email@jugador.com">
+              </div>
+              <div class="col-md-4">
+                <select class="form-select" formControlName="posicion3">
+                  <option value="" selected disabled>Posición</option>
+                  <option value="indiferente">Indififerente</option>
+                  <option value="derecha">Drive</option>
+                  <option value="reves">Revés</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <div class="row g-3">
+              <h3>Jugador 4</h3>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="nombre4" placeholder="Nombre">
+              </div>
+              <div class="col-md-4">
+                <input type="text" class="form-control" formControlName="email4" placeholder="email@jugador.com">
+              </div>
+              <div class="col-md-4">
+                <select class="form-select" formControlName="posicion4">
+                  <option value="" selected disabled>Posición</option>
+                  <option value="indiferente">Indififerente</option>
+                  <option value="derecha">Drive</option>
+                  <option value="reves">Revés</option>
+                </select>
+              </div>
+            </div>
+          </div>-->
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Género</label>
+              <select class="form-select" formControlName="genero">
+                <option value="mixta" selected>Mixta</option>
+                <option value="M">Masculina</option>
+                <option value="F">Femenina</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Categoría</label>
+              <select readonly class="form-select" formControlName="categoria">
+                <option value="1" selected>1º</option>
+                <option value="2">2º</option>
+                <option value="3">3º</option>
+                <option value="4">4º</option>
+                <option value="5">5º</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success" [disabled]="myForm.invalid">Crear partida</button>
+            <button type="button" class="btn btn-danger" (click)="cancelGame()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
