@@ -5,4 +5,5 @@ export interface HorarioPista {
   horaFin: string;
   fecha: string;
   reservado: boolean;
+  mostrar: boolean;
 }

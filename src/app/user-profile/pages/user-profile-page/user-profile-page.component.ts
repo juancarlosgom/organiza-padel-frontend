@@ -78,4 +78,24 @@ export class UserProfilePageComponent implements OnInit {
     this.router.navigate(['userProfile/look-game-open']);
   }
 
+  openConfirmResults() {
+    this.router.navigate(['userProfile/confirm-results-game']);
+  }
+
+  openAddResults() {
+    this.router.navigate(['userProfile/add-results-game']);
+  }
+
+  openEditProfile() {
+    this.router.navigate(['userProfile/edit-profile']);
+  }
+
+  openHistory() {
+    this.router.navigate(['userProfile/history']);
+  }
+
+  openStatistics() {
+    this.router.navigate(['userProfile/statistics']);
+  }
+
 }

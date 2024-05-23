@@ -16,6 +16,7 @@ export class GenerarPartidasComponent implements OnInit {
   private modalService = inject(ModalServiceService);
 
   fechaActualizada: string;
+  hourFilter: string = '';
   private partidasService = inject(PartidasService);
   private pistasReservadas: Pista[] = [];
   private horaInicio: string[] = [
@@ -78,7 +79,19 @@ export class GenerarPartidasComponent implements OnInit {
     }
   }
 
-
+  filterByHour() {
+    this.pistas.forEach((pista) => {
+      pista.horario.forEach((horario) => {
+        if (horario.horaInicio === this.hourFilter) {
+          horario.mostrar = true;
+        } else if (this.hourFilter === 'todas') {
+          horario.mostrar = true;
+        } else {
+          horario.mostrar = false;
+        }
+      })
+    })
+  }
 
 
   //Crear partida para que puedan los demás jugadores
@@ -157,6 +170,7 @@ export class GenerarPartidasComponent implements OnInit {
           horaFin: this.horaFin[index],
           fecha: this.fechaActualizada,
           reservado: false,
+          mostrar: true,
         })),
       },
       {
@@ -166,6 +180,7 @@ export class GenerarPartidasComponent implements OnInit {
           horaFin: this.horaFin[index],
           fecha: this.fechaActualizada,
           reservado: false,
+          mostrar: true,
         })),
       },
       {
@@ -175,6 +190,7 @@ export class GenerarPartidasComponent implements OnInit {
           horaFin: this.horaFin[index],
           fecha: this.fechaActualizada,
           reservado: false,
+          mostrar: true,
         })),
       },
       {
@@ -184,6 +200,7 @@ export class GenerarPartidasComponent implements OnInit {
           horaFin: this.horaFin[index],
           fecha: this.fechaActualizada,
           reservado: false,
+          mostrar: true,
         })),
       },
     ];

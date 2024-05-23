@@ -3,6 +3,7 @@ import { UserProfileServiceService } from '../../services/user-profile-service.s
 import { Observable } from 'rxjs';
 import { Game } from '../../interfaces/games.interface';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-look-games-user',
@@ -16,6 +17,19 @@ export class LookGamesUserComponent implements OnInit {
   private gamesUser: Game[] = [];
   public openGames: Game[] = [];
   public reserveGames: Game[] = [];
+
+  private fb = inject(FormBuilder);
+
+  public myForm: FormGroup = this.fb.group({
+    filterHour: [''],
+    filterDate: [''],
+    filterGender: [''],
+  });
+  public myFormReserve: FormGroup = this.fb.group({
+    filterHourReserve: [''],
+    filterDateReserve: [''],
+  });
+
   ngOnInit(): void {
     //window.location.reload();
     this.getIdUser();
@@ -99,9 +113,63 @@ export class LookGamesUserComponent implements OnInit {
       game.player = 'jugador4';
     }
 
-    console.log('Player partida: ' + game.player);
 
   }
+
+  filterGame() {
+    const { filterHour, filterDate, filterGender } = this.myForm.value;
+    //Restablezco todos los valores
+    this.openGames.forEach((game) => {
+      game.show = false;
+    });
+
+    this.openGames.forEach((game) => {
+      if (filterHour && filterHour !== game.horaInicio) {
+        game.show = true;
+      }
+      if (filterDate && filterDate !== game.fecha) {
+        game.show = true;
+      }
+      if (filterGender && filterGender !== game.genero) {
+        game.show = true;
+      }
+    });
+
+  }
+
+  removeFilter() {
+    this.openGames.forEach((game) => {
+      game.show = false;
+    });
+    this.myForm.reset();
+  }
+
+  filterReserve() {
+    const { filterHourReserve, filterDateReserve } = this.myFormReserve.value;
+    //Restablezco todos los valores
+    this.reserveGames.forEach((game) => {
+      game.show = false;
+    });
+
+    this.reserveGames.forEach((game) => {
+      if (filterHourReserve && filterHourReserve !== game.horaInicio) {
+        game.show = true;
+      }
+      if (filterDateReserve && filterDateReserve !== game.fecha) {
+        game.show = true;
+      }
+    });
+
+  }
+
+  removeFilterReserve() {
+    this.reserveGames.forEach((game) => {
+      game.show = false;
+    });
+    this.myFormReserve.reset();
+  }
+
+
 
 
 

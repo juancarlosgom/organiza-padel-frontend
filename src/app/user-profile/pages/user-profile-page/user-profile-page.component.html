@@ -4,12 +4,13 @@
       <div class="card">
         <div class="card-header bg-danger text-white">
           <h1 class="text-center">Mi Perfil</h1>
+          {{idJugador}}
         </div>
         <div class="card-body">
           <div class="row">
             <div class="form-group col-md-4">
-              <label for="nombre">Nombre: </label>
-              <p class="form-control-static">{{nombre}}</p>
+              <label for="nombre">Nombre y apellidos: </label>
+              <p class="form-control-static">{{nombre}}, {{apellidos}}</p>
             </div>
             <div class="form-group col-md-4">
               <label for="email">Correo electrónico:</label>
@@ -22,26 +23,12 @@
           </div>
           <div class="row">
             <div class="form-group col-md-4">
-              <label for="apellidos">Apellidos:</label>
-              <p class="form-control-static">{{apellidos}}</p>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="categoria">Categoria:</label>
-              <p class="form-control-static">{{categoria}}</p>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="estadisticas">Estadisticas:</label>
-              <p class="form-control-static">{{estadisticas}}</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-4">
               <label for="genero">Género:</label>
               <p class="form-control-static">{{genero}}</p>
             </div>
             <div class="form-group col-md-4">
-              <label for="historico">Historico:</label>
-              <p class="form-control-static">{{historico}}</p>
+              <label for="categoria">Categoria:</label>
+              <p class="form-control-static">{{categoria}}</p>
             </div>
             <div class="form-group col-md-4">
               <label for="posicionPista">Posición pista:</label>
@@ -64,19 +51,30 @@
           </div>
           <div class="row">
             <div class="form-group col-md-4">
-              <label for="idJugador">ID:</label>
-              <p class="form-control-static">{{idJugador}}</p>
+              <button class="btn btn-success" (click)="openEditProfile()">Editar perfil</button>
+            </div>
+            <div class="form-group col-md-4">
+              <button class="btn btn-success" (click)="openHistory()">Histórico</button>
+            </div>
+            <div class="form-group col-md-4">
+              <button class="btn btn-success" (click)="openStatistics()">Estadísticas</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4 mt-2">
+              <button class="btn btn-primary" (click)="openAddResults()">Añadir resultados</button>
             </div>
             <div class="form-group col-md-4 mt-2">
-              <button class="btn btn-success">Editar perfil</button>
+              <button class="btn btn-primary" (click)="openConfirmResults()">Confirmar resultados</button>
             </div>
             <div class="form-group col-md-4 mt-2">
-              <button class="btn btn-success" (click)="openLookGamesUser()">Ver mis partidas</button>
+              <button class="btn btn-primary" (click)="openLookGamesUser()">Ver mis partidas</button>
             </div>
           </div>
         </div>
         <div class="card-footer text-center  d-flex justify-content-around">
           <button class="btn btn-danger" (click)="logout()">Cerrar sesión</button>
+          <!--<button class="btn btn-success">Editar perfil</button>-->
           <button class="btn btn-warning">Eliminar cuenta</button>
         </div>
       </div>

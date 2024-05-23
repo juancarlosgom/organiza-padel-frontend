@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-header bg-danger text-white">
+          <h1 class="text-center">Editar Perfil</h1>
+        </div>
+        <form (ngSubmit)="saveChanges()" [formGroup]="myForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="nombre">Nombre:</label>
+                <input type="text" formControlName="name" class="form-control" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" formControlName="apellidos" class="form-control" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" formControlName="email" class="form-control" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="dni">DNI:</label>
+                <input type="text" formControlName="dni" class="form-control" />
+              </div>
+              <div class="form-group col-md-2">
+                <label for="genero">Género:</label>
+                <input type="text" formControlName="genero" class="form-control" />
+              </div>
+              <div class="form-group col-md-2">
+                <label for="categoria">Categoria:</label>
+                <input type="text" formControlName="categoria" class="form-control" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="posicionPista">Posición pista:</label>
+                <input type="text" formControlName="posicionPista" class="form-control" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="ranking">Ranking:</label>
+                <input type="text" formControlName="ranking" class="form-control" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="tallaCamiseta">Talla camiseta:</label>
+                <input type="text" formControlName="tallaCamiseta" class="form-control" />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" formControlName="telefono" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-center d-flex justify-content-around">
+            <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+            <button type="submit" [disabled]="myForm.invalid" class="btn btn-success">Guardar cambios</button>
+          </div>
+        </form>
+        <!--<div class="card-footer text-center d-flex justify-content-around">
+          <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>

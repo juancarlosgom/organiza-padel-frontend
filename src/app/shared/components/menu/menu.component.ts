@@ -34,6 +34,14 @@ export class MenuComponent implements OnInit {
           },
         ]
       },
+      {
+        label: 'Torneos',
+        routerLink: 'torneos'
+      },
+      {
+        label: 'Ranking App',
+        routerLink: 'rankingApp'
+      },
     ];
 
     if (localStorage.getItem('token')) {

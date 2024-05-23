@@ -9,6 +9,7 @@ import { ReservarPistaPageComponent } from './pages/reservar-pista-page/reservar
 import { CrearPartidaComponent } from './components/crear-partida/crear-partida.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { ApuntarsePartidasComponent } from './components/apuntarse-partidas/apuntarse-partidas.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ApuntarsePartidasComponent } from './components/apuntarse-partidas/apun
     ReservarPistaPageComponent,
     CrearPartidaComponent,
     ApuntarsePartidasComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,

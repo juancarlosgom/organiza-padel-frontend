@@ -25,7 +25,7 @@ export class CrearPartidaComponent implements OnInit {
   public user?: User;
 
   constructor() {
-    console.log(this.data);
+    //console.log(this.data);
   }
 
   public myForm: FormGroup = this.fb.group({
@@ -43,17 +43,18 @@ export class CrearPartidaComponent implements OnInit {
     posicion4: ['',],
     genero: ['', Validators.required],
     categoria: ['', Validators.required],*/
-    nombre: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+    nombre: [{ value: '', disabled: true }, [Validators.required]],
+    email: [{ value: '', disabled: true }, [Validators.required]],
     posicion: ['', [Validators.required]],
     genero: ['', Validators.required],
-    categoria: ['', Validators.required],
+    categoria: [{ value: '', disabled: true }, Validators.required],
   });
 
   ngOnInit(): void {
     this.getDataUser()
       .subscribe((resp) => {
-        console.log(resp);
+        //console.log(resp.usuarioAll);
+        this.user = resp.usuarioAll;
         this.myForm.setValue({
           nombre: resp.usuarioAll.apellidos,
           email: resp.usuario.email,

@@ -3,6 +3,7 @@ import { Pista } from '../../interfaces/pista.interface';
 import { PartidasService } from '../../services/partidas-service.service';
 import { OpenGames } from '../../interfaces/openGames.interfaces';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-partidas-abiertas',
@@ -12,6 +13,16 @@ import Swal from 'sweetalert2';
 export class PartidasAbiertasComponent implements OnInit {
 
   private gamesService = inject(PartidasService);
+  private fb = inject(FormBuilder);
+
+  public myForm: FormGroup = this.fb.group({
+    filterHour: [''],
+    filterDate: [''],
+    filterGender: [''],
+  });
+  /*filterHour?: string;
+  filterDate?: string;
+  filterCategory?: string;*/
   public openGames: OpenGames[] = [];
 
   ngOnInit(): void {
@@ -65,6 +76,34 @@ export class PartidasAbiertasComponent implements OnInit {
           }
         }
       });
+  }
+
+  filterGame() {
+    const { filterHour, filterDate, filterGender } = this.myForm.value;
+    //Restablezco todos los valores
+    this.openGames.forEach((game) => {
+      game.show = false;
+    });
+
+    this.openGames.forEach((game) => {
+      if (filterHour && filterHour !== game.horaInicio) {
+        game.show = true;
+      }
+      if (filterDate && filterDate !== game.fecha) {
+        game.show = true;
+      }
+      if (filterGender && filterGender !== game.genero) {
+        game.show = true;
+      }
+    });
+
+  }
+
+  removeFilter() {
+    this.openGames.forEach((game) => {
+      game.show = false;
+    });
+    this.myForm.reset();
   }
 
 

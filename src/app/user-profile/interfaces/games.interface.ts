@@ -34,4 +34,6 @@ export interface Game {
   pos4?: string;
   cat4?: string;
   g4?: string;
+  show?: boolean;
+  adminPartida?: number;
 }

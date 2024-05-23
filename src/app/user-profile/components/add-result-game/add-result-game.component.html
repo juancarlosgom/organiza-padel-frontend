@@ -1,0 +1,133 @@
+<div class="container text-center mt-2 mb-2">
+  <div class="row justify-content-center vh-60">
+    <div class="col-md-10">
+      <div class="card p-4 shadow">
+        <h2 class="mb-4">Registro de Partida</h2>
+        <!--<p class="text-warning">
+          Una vez selecciones un jugador, no podrás cambiarlo. En caso de error pulse en Cancelar.
+        </p>
+        <p class="text-primary">A continuación, deberá volver a pulsar en añadir resultado en la ventana anterior.</p>-->
+        <div class="alert alert-warning" role="alert">
+          <p>Una vez selecciones un jugador, no podrás cambiarlo. En caso de error pulse en <u>Cancelar</u>.</p>
+          <p>A continuación, deberá volver a pulsar en <u>añadir resultado</u> en la ventana anterior.</p>
+        </div>
+        <form (ngSubmit)="registerResult()" [formGroup]="myForm">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="card-title">Pareja 1</h3>
+              <div class="form-group">
+                <label for="jugador1">Jugador 1</label>
+                <select class="form-control" id="jugador1" formControlName="jugador1" (focus)="checkValuesLook1()"
+                  (change)="addValuePlayer1()">
+                  <!--(focus)="checkPlayerSelector1()"(change)="disabledSelect(1)"-->
+                  <option value="">Elige un jugador</option>
+                  @if (!j11) {
+                  <option value="{{dataGame?.jugador1}}">{{dataGame?.apellidos1}} - {{dataGame?.pos1}}</option>
+                  }
+                  @if(!j12){
+                  <option value="{{dataGame?.jugador2}}">{{dataGame?.apellidos2}} - {{dataGame?.pos2}}</option>
+                  }
+                  @if (!j13) {
+                  <option value="{{dataGame?.jugador3}}">{{dataGame?.apellidos3}} - {{dataGame?.pos3}}</option>
+                  }
+                  @if(!j14){
+                  <option value="{{dataGame?.jugador4}}">{{dataGame?.apellidos4}} - {{dataGame?.pos4}}</option>
+                  }
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="jugador2">Jugador 2</label>
+                <select class="form-control" id="jugador2" formControlName="jugador2" (focus)="checkValuesLook2()"
+                  (change)="addValuePlayer2()">
+                  <!--(focus)="checkPlayerSelector2()" (change)="disabledSelect(2)"-->
+                  <option value="">Elige un jugador</option>
+                  @if (!j21) {
+                  <option value="{{dataGame?.jugador1}}">{{dataGame?.apellidos1}} - {{dataGame?.pos1}}</option>
+                  }
+                  @if(!j22){
+                  <option value="{{dataGame?.jugador2}}">{{dataGame?.apellidos2}} - {{dataGame?.pos2}}</option>
+                  }
+                  @if (!j23) {
+                  <option value="{{dataGame?.jugador3}}">{{dataGame?.apellidos3}} - {{dataGame?.pos3}}</option>
+                  }
+                  @if(!j24){
+                  <option value="{{dataGame?.jugador4}}">{{dataGame?.apellidos4}} - {{dataGame?.pos4}}</option>
+                  }
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="mb-4">VS</h2>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="card-title">Pareja 2</h3>
+              <div class="form-group">
+                <label for="jugador3">Jugador 3</label>
+                <select class="form-control" id="jugador3" formControlName="jugador3" (focus)="checkValuesLook3()"
+                  (change)="addValuePlayer3()">
+                  <!--(focus)="checkPlayerSelector3()" (change)="disabledSelect(3)"-->
+                  <option value="">Elige un jugador</option>
+                  @if (!j31) {
+                  <option value="{{dataGame?.jugador1}}">{{dataGame?.apellidos1}} - {{dataGame?.pos1}}</option>
+                  }
+                  @if(!j32){
+                  <option value="{{dataGame?.jugador2}}">{{dataGame?.apellidos2}} - {{dataGame?.pos2}}</option>
+                  }
+                  @if (!j33) {
+                  <option value="{{dataGame?.jugador3}}">{{dataGame?.apellidos3}} - {{dataGame?.pos3}}</option>
+                  }
+                  @if(!j34){
+                  <option value="{{dataGame?.jugador4}}">{{dataGame?.apellidos4}} - {{dataGame?.pos4}}</option>
+                  }
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="jugador4">Jugador 4</label>
+                <select class="form-control" id="jugador4" formControlName="jugador4" (focus)="checkValuesLook4()"
+                  (change)="addValuePlayer4()">
+                  <!--(focus)="checkPlayerSelector4()"(change)="disabledSelect(4)"-->
+                  <option value="">Elige un jugador</option>
+                  @if (!j41) {
+                  <option value="{{dataGame?.jugador1}}">{{dataGame?.apellidos1}} - {{dataGame?.pos1}}</option>
+                  }
+                  @if(!j42){
+                  <option value="{{dataGame?.jugador2}}">{{dataGame?.apellidos2}} - {{dataGame?.pos2}}</option>
+                  }
+                  @if (!j43) {
+                  <option value="{{dataGame?.jugador3}}">{{dataGame?.apellidos3}} - {{dataGame?.pos3}}</option>
+                  }
+                  @if(!j44){
+                  <option value="{{dataGame?.jugador4}}">{{dataGame?.apellidos4}} - {{dataGame?.pos4}}</option>
+                  }
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column flex-md-row justify-content-between">
+            <div class="form-group mb-2 col-md-6">
+              <label for="parejaGanadora">¿Pareja ganadora?</label>
+              <select class="form-control" formControlName="parejaGanadora">
+                <option value="">Elige pareja ganadora</option>
+                <option value="1">Pareja 1</option>
+                <option value="2">Pareja 2</option>
+              </select>
+            </div>
+            <div class="form-group mb-2 col-md-6">
+              <label for="resultado">Resultado</label>
+              <input type="text" class="form-control" id="resultado" placeholder="Ej: 4-6/6-4/7-6"
+                formControlName="resultado">
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success" [disabled]="myForm.invalid">Añadir resultado</button>
+            <button type="button" class="btn btn-danger" (click)="cancelGame()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

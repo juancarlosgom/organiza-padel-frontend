@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col md-12">
+      <h2>Añade los resultados de las partidas que eres adminitrador</h2>
+      @if(confirmGames.length !== 0){
+      <!--Añado opción de filtrar -->
+      <div class="container mb-2">
+        <form (ngSubmit)="filterGame()" [formGroup]="myFormFilter">
+          <div class="row mt-4">
+            <div class="col-md-4">
+              <select class="form-control" id="filtroHora" formControlName="filterHour">
+                <option value="">Hora de Inicio</option>
+                <option value="08:30">08:30</option>
+                <option value="10:00">10:00</option>
+                <option value="11:30">11:30</option>
+                <option value="13:00">13:00</option>
+                <option value="14:30">14:30</option>
+                <option value="16:00">16:00</option>
+                <option value="17:30">17:30</option>
+                <option value="19:00">19:00</option>
+                <option value="20:30">20:30</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <input type="date" class="form-control" id="filtroFecha" placeholder="Fecha" formControlName="filterDate">
+            </div>
+            <div class="col-md-4">
+              <select class="form-control" id="filtroCategoria" formControlName="filterGender">
+                <option value="">Categoría</option>
+                <option value="Mixta">Mixta</option>
+                <option value="F">Femenina</option>
+                <option value="M">Masculina</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12 text-right">
+              <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-primary ml-3" (click)="removeFilter()">Quitar filtros</button>
+      </div>
+      <!--Termina opción de filtro-->
+
+      <div class="container text-center mt-2 mb-2">
+        <div class="row justify-content-center">
+          @for (game of confirmGames; track $index) {
+          @if (!game.show) {
+          <div class="col-md-6">
+            <div class="card p-4 shadow mb-3">
+              <h3 class="mb-4">Confirmación del resultado</h3>
+              <div class="row mt-4">
+                <div class="col-md-12 d-flex flex-wrap justify-content-center">
+                  <p class="me-4"><strong>Fecha:</strong> {{ game.fecha }}</p>
+                  <p class="me-4"><strong>Hora:</strong> {{ game.horaInicio }} - {{game.horaFin}}</p>
+                  <p class="me-4"><strong>Pista:</strong> {{ game.idPista }}</p>
+                  <p><strong>Categoría:</strong> {{ game.categoria }}</p>
+                </div>
+              </div>
+
+              <form (ngSubmit)="confirmResult(game.idResultado, game)" [formGroup]="myForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <h3 class="card-title">Pareja 1</h3>
+                        <div class="form-group">
+                          <label for="jugador1">Jugador 1</label>
+                          <input class="form-control" id="jugador1" formControlName="jugador1"
+                            placeholder="{{game.apellidos1}} - {{game.pos1}}" />
+                        </div>
+                        <div class="form-group">
+                          <label for="jugador2">Jugador 2</label>
+                          <input class="form-control" id="jugador1" formControlName="jugador2"
+                            placeholder="{{game.apellidos2}} - {{game.pos2}}" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <h3 class="card-title">Pareja 2</h3>
+                        <div class="form-group">
+                          <label for="jugador3">Jugador 3</label>
+                          <input class="form-control" id="jugador1" formControlName="jugador3"
+                            placeholder="{{game.apellidos3}} - {{game.pos3}}" />
+                        </div>
+                        <div class="form-group">
+                          <label for="jugador4">Jugador 4</label>
+                          <input class="form-control" id="jugador1" formControlName="jugador4"
+                            placeholder="{{game.apellidos4}} - {{game.pos4}}" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                      <div class="form-group mb-2 col-md-12">
+                        <label for="parejaGanadora">¿Pareja ganadora?</label>
+                        <input class="form-control" id="parejaGanadora" formControlName="parejaGanadora"
+                          placeholder="{{game.parejaGanadora}}" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mb-2 col-md-12">
+                      <label for="resultado">Resultado</label>
+                      <input type="text" class="form-control" id="resultado" placeholder="{{game.resultado}}"
+                        formControlName="resultado">
+                    </div>
+                  </div>
+                </div>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-success" [disabled]="myForm.invalid">Confirmar resultado</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          }
+          }
+        </div>
+      </div>
+
+
+      }@else {
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">No tienes partidas para confirmar resultados.</h5>
+                <p class="card-text">En estos momentos no hay partidas donde tengas que confirmar nigún resultado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

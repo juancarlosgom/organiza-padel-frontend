@@ -3,12 +3,53 @@
     <div class="col md-6">
       <h2>Partidas</h2>
       @if(openGames.length !== 0){
+      <!--Añado opción de filtrar -->
+      <div class="container mb-2">
+        <form (ngSubmit)="filterGame()" [formGroup]="myForm">
+          <div class="row mt-4">
+            <div class="col-md-4">
+              <select class="form-control" id="filtroHora" formControlName="filterHour">
+                <option value="">Hora de Inicio</option>
+                <option value="08:30">08:30</option>
+                <option value="10:00">10:00</option>
+                <option value="11:30">11:30</option>
+                <option value="13:00">13:00</option>
+                <option value="14:30">14:30</option>
+                <option value="16:00">16:00</option>
+                <option value="17:30">17:30</option>
+                <option value="19:00">19:00</option>
+                <option value="20:30">20:30</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <input type="date" class="form-control" id="filtroFecha" placeholder="Fecha" formControlName="filterDate">
+            </div>
+            <div class="col-md-4">
+              <select class="form-control" id="filtroCategoria" formControlName="filterGender">
+                <option value="">Categoría</option>
+                <option value="Mixta">Mixta</option>
+                <option value="F">Femenina</option>
+                <option value="M">Masculina</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12 text-right">
+              <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-primary ml-3" (click)="removeFilter()">Quitar filtros</button>
+      </div>
+      <!--Termina opción de filtro-->
       @for (game of openGames; track $index) {
+      @if (!game.show) {
       <div class="card">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-around">
           Detalles de la Partida
           <button class="btn btn-danger" (click)="deleteUserOpenGame(game.idPartida!,game.player!)">No puedo
             asistir</button>
+          <span class="text-primary">Admin partida</span>
         </div>
         <div class="card-body">
           <ul class="list-group">
@@ -20,7 +61,8 @@
               <strong>Hora:</strong> {{game.horaInicio}} - {{game.horaFin}}
             </li>
             <li class="list-group-item d-flex justify-content-evenly">
-              <span [class]="game.jugador1 === null ? 'text-success' : ''">
+              <span [class]="(game.jugador1 === null ? 'text-success' : '') +
+              ( game.adminPartida !== null && game.adminPartida === game.jugador1 ? ' text-primary' : '')">
                 <strong>Jugador 1:</strong>
                 @if (game.jugador1 === null) {
                 Libre
@@ -30,11 +72,12 @@
                 <strong>G: </strong>{{game.g1}}.
                 }
                 <!--{{game.jugador1 === null ? 'Libre': game.apellidos1+'. Cat: '+game.cat1+
-                'º. Pos: '+game.pos1+'.'}}-->
+                    'º. Pos: '+game.pos1+'.'}}-->
               </span>
             </li>
             <li class="list-group-item d-flex justify-content-evenly">
-              <span [class]="game.jugador2 === null ? 'text-success' : ''">
+              <span [class]="(game.jugador2 === null ? 'text-success' : '') +
+              ( game.adminPartida !== null && game.adminPartida === game.jugador2 ? ' text-primary' : '')">
                 <strong>Jugador 2:</strong>
                 @if (game.jugador2 === null) {
                 Libre
@@ -46,7 +89,8 @@
               </span>
             </li>
             <li class="list-group-item d-flex justify-content-evenly">
-              <span [class]="game.jugador3 === null ? 'text-success' : ''">
+              <span [class]="(game.jugador3 === null ? 'text-success' : '') +
+              ( game.adminPartida !== null && game.adminPartida === game.jugador3 ? ' text-primary' : '')">
                 <strong>Jugador 3:</strong>
                 @if (game.jugador3 === null) {
                 Libre
@@ -58,7 +102,8 @@
               </span>
             </li>
             <li class="list-group-item d-flex justify-content-evenly">
-              <span [class]="game.jugador4 === null ? 'text-success' : ''">
+              <span [class]="(game.jugador4 === null ? 'text-success' : '') +
+              ( game.adminPartida !== null && game.adminPartida === game.jugador4 ? ' text-primary' : '')">
                 <strong>Jugador 4:</strong>
                 @if (game.jugador4 === null) {
                 Libre
@@ -80,6 +125,7 @@
         </div>
       </div>
       }
+      }
       }@else {
       <div class="container">
         <div class="row">
@@ -98,7 +144,40 @@
     <div class="col-md-6">
       <h2>Partidas Reservadas</h2>
       @if (reserveGames.length !== 0) {
+      <!--Añado opción de filtrar -->
+      <div class="container mb-2">
+        <form (ngSubmit)="filterReserve()" [formGroup]="myFormReserve">
+          <div class="row mt-4">
+            <div class="col-md-4">
+              <select class="form-control" id="filtroHora" formControlName="filterHourReserve">
+                <option value="">Hora de Inicio</option>
+                <option value="08:30">08:30</option>
+                <option value="10:00">10:00</option>
+                <option value="11:30">11:30</option>
+                <option value="13:00">13:00</option>
+                <option value="14:30">14:30</option>
+                <option value="16:00">16:00</option>
+                <option value="17:30">17:30</option>
+                <option value="19:00">19:00</option>
+                <option value="20:30">20:30</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <input type="date" class="form-control" id="filtroFecha" placeholder="Fecha"
+                formControlName="filterDateReserve">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12 text-right">
+              <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-primary ml-3" (click)="removeFilterReserve()">Quitar filtros</button>
+      </div>
+      <!--Termina opción de filtro-->
       @for (game of reserveGames; track $index) {
+      @if (!game.show) {
       <div class="card">
         <div class="card-header">
           Detalles de la reserva
@@ -112,6 +191,7 @@
           </ul>
         </div>
       </div>
+      }
       }
       }@else {
       <div class="container">

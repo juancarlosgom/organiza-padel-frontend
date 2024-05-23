@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-body">
+          <div class="table-responsive">
+            @if (history.length! > 0) {
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th colspan="2">Pareja 1</th>
+                  <th colspan="2">Pareja 2</th>
+                  <th>Resultado</th>
+                  <th>Pareja Ganadora</th>
+                  <th>Hora Inicio</th>
+                  <th>Hora Fin</th>
+                  <th>Fecha</th>
+                  <th>Categoría</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of history; track $index) {
+                <tr>
+                  <td>{{item.apellidos1}}</td>
+                  <td>{{item.apellidos2}}</td>
+                  <td>{{item.apellidos3}}</td>
+                  <td>{{item.apellidos4}}</td>
+                  <td>{{item.resultado}}</td>
+                  <td>{{item.parejaGanadora}}</td>
+                  <td>{{item.horaInicio}}</td>
+                  <td>{{item.horaFin}}</td>
+                  <td>{{item.fecha}}</td>
+                  <td>{{item.categoria}}</td>
+                </tr>
+                }
+              </tbody>
+            </table>
+            }@else {
+            <p>No tienes partidas disputadas</p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-2 fw-bold">ID</div>
+            <div class="col-sm-2 fw-bold">Jugador 1</div>
+            <div class="col-sm-2 fw-bold">Jugador 2</div>
+            <div class="col-sm-2 fw-bold">Jugador 3</div>
+            <div class="col-sm-2 fw-bold">Jugador 4</div>
+            <div class="col-sm-2 fw-bold">Resultado</div>
+            <div class="col-sm-2 fw-bold">Pareja Ganadora</div>
+            <div class="col-sm-2 fw-bold">Hora Inicio</div>
+            <div class="col-sm-2 fw-bold">Hora Fin</div>
+            <div class="col-sm-2 fw-bold">Fecha</div>
+            <div class="col-sm-2 fw-bold">Categoría</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2">1</div>
+            <div class="col-sm-2">John Doe</div>
+            <div class="col-sm-2">Jane Smith</div>
+            <div class="col-sm-2">Michael Johnson</div>
+            <div class="col-sm-2">Emily Brown</div>
+            <div class="col-sm-2">6-4/7-6</div>
+            <div class="col-sm-2">1</div>
+            <div class="col-sm-2">08:00 AM</div>
+            <div class="col-sm-2">10:00 AM</div>
+            <div class="col-sm-2">2024-05-23</div>
+            <div class="col-sm-2">1</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->

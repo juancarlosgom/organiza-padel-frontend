@@ -32,4 +32,5 @@ export interface OpenGames {
   pos4?: string;
   cat4?: string;
   g4?: string;
+  show: boolean;
 }
