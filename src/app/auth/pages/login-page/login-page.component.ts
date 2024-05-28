@@ -29,9 +29,12 @@ export class LoginPageComponent {
       subscribe({
         //next: () => this.router.navigateByUrl('/auth/login'),
         next: (resp) => {
+          if (resp.admin) {
+            localStorage.setItem('admin', 'isAdmin');
+          }
           this.tokenUser = resp.token,
             localStorage.setItem('token', this.tokenUser!),
-            console.log('Logueado: '),
+            console.log(resp),
             window.location.reload();
         },
         error: (errorMessage) => {

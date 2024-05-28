@@ -16,7 +16,7 @@ export class StatisticsPageComponent implements OnInit {
   ngOnInit(): void {
     this.userProfileService.getStatisticsUser()
       .subscribe((resp) => {
-        console.log(resp);
+        //console.log(resp);
         this.statistics = resp.stastistics;
       });
   }

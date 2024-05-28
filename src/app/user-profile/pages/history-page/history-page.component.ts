@@ -16,7 +16,7 @@ export class HistoryPageComponent implements OnInit {
   ngOnInit(): void {
     this.userProfileService.getHistoryUser()
       .subscribe((resp) => {
-        console.log(resp);
+        //console.log(resp);
         this.history = resp.history;
       });
   }

@@ -152,9 +152,21 @@ export class GenerarPartidasComponent implements OnInit {
     this.partidasService.getDateUpdate(this.fechaActualizada).
       subscribe(
         (resp) => {
-          this.pistas = this.getTracks();
-          this.pistasReservadas = resp.pistasReservadas;
-          this.mountTracks();
+          if (resp.status) {
+            this.pistas = this.getTracks();
+            this.pistasReservadas = resp.pistasReservadas;
+            this.mountTracks();
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: resp.message,
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              willClose: () => {
+                window.location.reload();
+              }
+            });
+          }
         }
       );
 

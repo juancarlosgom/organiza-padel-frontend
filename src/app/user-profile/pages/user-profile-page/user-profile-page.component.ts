@@ -67,6 +67,9 @@ export class UserProfilePageComponent implements OnInit {
     );
     setTimeout(() => {
       localStorage.removeItem('token');
+      if (localStorage.getItem('admin')) {
+        localStorage.removeItem('admin');
+      }
       window.location.reload();
     }, 2000);
 

@@ -44,6 +44,13 @@ export class MenuComponent implements OnInit {
       },
     ];
 
+    if (localStorage.getItem('admin') == 'isAdmin') {
+      this.menuItems.push({
+        label: 'Crear nuevo torneo',
+        routerLink: 'create-tournament',
+      });
+    }
+
     if (localStorage.getItem('token')) {
       this.secondMenu = [
         /*{

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './inicio/pages/home-page/home-page.component';
 import { isAuthenticatedGuard } from './auth/guards/is-authenticated.guard';
 import { isNotAuthenticatedGuard } from './auth/guards/is-not-authenticated.guard';
+import { isAdminGuard } from './auth/guards/is-admin.guard';
+import { CreateTournamentPageComponent } from './create-tournament/pages/create-tournament-page/create-tournament-page.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,11 @@ const routes: Routes = [
     path: 'rankingApp',
     canActivate: [isAuthenticatedGuard],
     loadChildren: () => import('./ranking-app/ranking-app.module').then(m => m.RankingAppModule),
+  },
+  {
+    path: 'create-tournament',
+    canActivate: [isAdminGuard],
+    loadChildren: () => import('./create-tournament/create-tournament.module').then(m => m.CreateTournamentModule),
   },
   {
     path: '',

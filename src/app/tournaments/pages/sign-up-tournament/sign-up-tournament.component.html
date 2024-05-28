@@ -1,0 +1,95 @@
+<form (ngSubmit)="singUpTournament()" [formGroup]="myForm">
+
+  <div class="mb-4">
+    @if (errors) {
+    <p class="text-danger">
+      Todos los campos son requeridos.
+    </p>
+    }
+    <h4 class="mb-3">Datos del Jugador 1</h4>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="name1" class="form-label">Nombre:</label>
+        <input type="text" id="name1" formControlName="name1" class="form-control">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="lastName1" class="form-label">Apellido:</label>
+        <input type="text" id="lastName1" formControlName="lastName1" class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="dni1" class="form-label">DNI:</label>
+        <input type="text" id="dni1" formControlName="dni1" class="form-control">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="size1" class="form-label">Talla de camiseta:</label>
+        <select id="size1" formControlName="size1" class="form-select">
+          <option value="" disabled selected>Selecciona una talla</option>
+          <option value="xs">XS</option>
+          <option value="s">S</option>
+          <option value="m">M</option>
+          <option value="l">L</option>
+          <option value="xl">XL</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <hr class="mb-4">
+
+  <div class="mb-4">
+    <h4 class="mb-3">Datos del Jugador 2</h4>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="name2" class="form-label">Nombre:</label>
+        <input type="text" id="name2" formControlName="name2" class="form-control">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="lastName2" class="form-label">Apellido:</label>
+        <input type="text" id="lastName2" formControlName="lastName2" class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="dni2" class="form-label">DNI:</label>
+        <input type="text" id="dni2" formControlName="dni2" class="form-control">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="size2" class="form-label">Talla de camiseta:</label>
+        <select id="size2" formControlName="size2" class="form-select">
+          <option value="" disabled selected>Selecciona una talla</option>
+          <option value="xs">XS</option>
+          <option value="s">S</option>
+          <option value="m">M</option>
+          <option value="l">L</option>
+          <option value="xl">XL</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="category" class="form-label">Categoría:</label>
+      <select id="category" formControlName="category" class="form-select">
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option value="1">1º</option>
+        <option value="2">2º</option>
+        <option value="3">3º</option>
+        <option value="4">4º</option>
+        <option value="5">5º</option>
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Inscribir pareja</button>
+</form>

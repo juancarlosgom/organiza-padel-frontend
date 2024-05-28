@@ -1,0 +1,64 @@
+<form (ngSubmit)="createTournament()" [formGroup]="myForm">
+  <div class="mb-3">
+    <label for="title" class="form-label">Título:</label>
+    <input type="text" id="title" formControlName="title" class="form-control">
+    @if (checkTitle) {
+    <p class="text-danger">
+      Título requerido, mínimo 2 carácteres.
+    </p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Descripción:</label>
+    <textarea id="description" formControlName="description" class="form-control"></textarea>
+    @if (checkDescription) {
+    <p class="text-danger">
+      Descripción requerida, mínimo 10 carácteres.
+    </p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="dateStart" class="form-label">Fecha de inicio:</label>
+    <input type="date" id="dateStart" formControlName="dateStart" class="form-control">
+    @if (checkDateStart) {
+    <p class="text-danger">
+      Fecha requerida, selecciona una fecha posterior a la actual.
+    </p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="dateEnd" class="form-label">Fecha de fin:</label>
+    <input type="date" id="dateEnd" formControlName="dateEnd" class="form-control">
+    @if (checkDateEnd) {
+    <p class="text-danger">
+      Fecha requerida, selecciona una fecha posterior a la fecha de inicio.
+    </p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Precio:</label>
+    <input type="number" id="price" formControlName="price" class="form-control">
+    @if (checkPrice) {
+    <p class="text-danger">
+      Precio requerido, solo carácteres númericos.
+    </p>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="img" class="form-label">Cartel del torneo (archivos.jpg):</label>
+    <input type="file" id="img" formControlName="img" class="form-control" accept="image/jpeg"
+      (change)="onFileSelected($event)">
+    @if (checkImg) {
+    <p class="text-danger">
+      Imagén del torneo requerida. Solo archivos .jpg o .jpeg.
+    </p>
+    }
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
