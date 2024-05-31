@@ -1,1 +1,205 @@
-<p>ranking-app-page works!</p>
+<div class="container mb-2">
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <label for="category">Categoría: </label>
+      <select class="form-control" [(ngModel)]="category">
+        <option selected value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="gender">Género: </label>
+      <select class="form-control" [(ngModel)]="gender">
+        <option selected value="M">Masculina</option>
+        <option value="F">Femenina</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+<div class="card mt-5">
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Posición</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Puntos</th>
+          <th scope="col">Partidas a favor</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (gender === 'M') {
+        @if (category === '1') {
+        @if (playersM1.length > 0) {
+        @for (player of playersM1; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadores en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '2') {
+        @if(playersM2.length > 0){
+        @for (player of playersM2; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadores en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '3') {
+        @if(playersM3.length > 0){
+        @for (player of playersM3; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadores en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '4') {
+        @if (playersM4.length > 0) {
+        @for (player of playersM4; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadores en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '5') {
+        @if (playersM5.length > 0) {
+        @for (player of playersM5; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadores en esta categoría.</td>
+        </tr>
+        }
+        }
+        }@else {
+        @if (category === '1') {
+        @if (playersF1.length > 0) {
+        @for (player of playersF1; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadoras en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '2') {
+        @if (playersF2.length > 0) {
+        @for (player of playersF2; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadoras en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '3') {
+        @if (playersF3.length > 0) {
+        @for (player of playersF3; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadoras en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '4') {
+        @if (playersF4.length > 0) {
+        @for (player of playersF4; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadoras en esta categoría.</td>
+        </tr>
+        }
+        }@else if (category === '5') {
+        @if (playersF5.length > 0) {
+        @for (player of playersF5; track $index) {
+        <tr>
+          <td>{{$index + 1}}</td>
+          <th scope="row">{{ player.name }}</th>
+          <td>{{ player.apellidos }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{player.partidasGanadas - player.partidasPerdidas}}</td>
+        </tr>
+        }
+        }@else {
+        <tr>
+          <td>En estos momentos no hay jugadoras en esta categoría.</td>
+        </tr>
+        }
+        }
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

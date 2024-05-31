@@ -53,14 +53,25 @@ export class SignUpTournamentComponent {
               },
             });
           } else {
-            Swal.fire({
-              title: 'Error',
-              html: `
-          <p>Ha sucedido un error inesperado, al inscribirte el torneo.</p>
-        `,
-              icon: 'error',
-              confirmButtonText: 'Ok',
-            });
+            if (!resp.status) {
+              Swal.fire({
+                title: 'Plazas agotadas',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                willClose: () => {
+                  this.router.navigate(['torneos']);
+                },
+              });
+            } else {
+              Swal.fire({
+                title: 'Error',
+                html: `
+            <p>Ha sucedido un error inesperado, al inscribirte el torneo.</p>
+          `,
+                icon: 'error',
+                confirmButtonText: 'Ok',
+              });
+            }
           }
         });
     }

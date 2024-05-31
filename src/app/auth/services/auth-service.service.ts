@@ -14,9 +14,9 @@ export class AuthServiceService {
 
   constructor() { }
 
-  register(valoresFormularui: FormGroup): Observable<any> {
+  register(valoresFormulario: FormGroup): Observable<any> {
     const url = `${this.baseUrl}/register`;
-    return this.http.post(url, valoresFormularui);
+    return this.http.post(url, valoresFormulario);
   }
 
   login(email: string, password: string): Observable<any> {

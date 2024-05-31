@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -10,76 +10,144 @@ export class MenuComponent implements OnInit {
 
   public menuItems: MenuItem[] = [];
   public secondMenu: MenuItem[] = [];
+  public isSmallScreen: boolean = false;
+
+  //Escucho los eventos del elemento asociado cambio de tamaño de ventana
+  @HostListener('window:resize', ['$event'])
+  changeSize(event: any) {
+    this.checkScreenSize();
+    this.mountMenus();
+  }
+
 
   ngOnInit(): void {
-    this.menuItems = [
-      {
-        label: 'Inicio',
-        routerLink: 'inicio'
-      },
-      {
-        label: 'Partidas',
-        items: [
-          {
-            label: 'Partidas abiertas',
-            routerLink: 'partidas/open'
-          },
-          {
-            label: 'Crear partida',
-            routerLink: 'partidas/new',
-          },
-          {
-            label: 'Reservar pista',
-            routerLink: 'partidas/reserveTrack',
-          },
-        ]
-      },
-      {
-        label: 'Torneos',
-        routerLink: 'torneos'
-      },
-      {
-        label: 'Ranking App',
-        routerLink: 'rankingApp'
-      },
-    ];
+    this.checkScreenSize();
+    this.mountMenus();
+  }
 
-    if (localStorage.getItem('admin') == 'isAdmin') {
-      this.menuItems.push({
-        label: 'Crear nuevo torneo',
-        routerLink: 'create-tournament',
-      });
-    }
-
-    if (localStorage.getItem('token')) {
-      this.secondMenu = [
-        /*{
-          label: 'Login',
-          routerLink: 'auth/login'
+  mountMenus() {
+    if (!this.isSmallScreen) {
+      this.menuItems = [
+        {
+          label: 'Inicio',
+          routerLink: 'inicio'
         },
         {
-          label: 'Sing Up',
-          routerLink: 'auth/register'
-        },*/
+          label: 'Partidas',
+          items: [
+            {
+              label: 'Partidas abiertas',
+              routerLink: 'partidas/open'
+            },
+            {
+              label: 'Crear partida',
+              routerLink: 'partidas/new',
+            },
+            {
+              label: 'Reservar pista',
+              routerLink: 'partidas/reserveTrack',
+            },
+          ]
+        },
         {
+          label: 'Torneos',
+          routerLink: 'torneos'
+        },
+        {
+          label: 'Ranking App',
+          routerLink: 'rankingApp'
+        },
+      ];
+
+      if (localStorage.getItem('admin') == 'isAdmin') {
+        this.menuItems.push({
+          label: 'Crear nuevo torneo',
+          routerLink: 'create-tournament',
+        });
+      }
+
+      if (localStorage.getItem('token')) {
+        this.secondMenu = [
+          {
+            label: 'Mi perfil',
+            routerLink: 'userProfile/my-account'
+          },
+        ];
+
+      } else {
+        this.secondMenu = [
+          {
+            label: 'Login',
+            routerLink: 'auth/login'
+          },
+          {
+            label: 'Sing Up',
+            routerLink: 'auth/register'
+          },
+        ];
+      }
+    } else {
+      this.menuItems = [
+        {
+          label: 'Inicio',
+          routerLink: 'inicio'
+        },
+        {
+          label: 'Partidas',
+          items: [
+            {
+              label: 'Partidas abiertas',
+              routerLink: 'partidas/open'
+            },
+            {
+              label: 'Crear partida',
+              routerLink: 'partidas/new',
+            },
+            {
+              label: 'Reservar pista',
+              routerLink: 'partidas/reserveTrack',
+            },
+          ]
+        },
+        {
+          label: 'Torneos',
+          routerLink: 'torneos'
+        },
+        {
+          label: 'Ranking App',
+          routerLink: 'rankingApp'
+        },
+      ];
+
+      if (localStorage.getItem('admin') == 'isAdmin') {
+        this.menuItems.push({
+          label: 'Crear nuevo torneo',
+          routerLink: 'create-tournament',
+        });
+      }
+      if (localStorage.getItem('token')) {
+        this.menuItems.push({
           label: 'Mi perfil',
           routerLink: 'userProfile/my-account'
-        },
-      ];
-
-    } else {
-      this.secondMenu = [
-        {
+        });
+      } else {
+        this.menuItems.push({
           label: 'Login',
           routerLink: 'auth/login'
-        },
-        {
+        });
+        this.menuItems.push({
           label: 'Sing Up',
           routerLink: 'auth/register'
-        },
-      ];
+        });
+      }
     }
-
   }
+
+  checkScreenSize() {
+    //Para obtener el tamaño de la pantalla
+    this.isSmallScreen = window.innerWidth <= 960;
+  }
+
+
 
 }

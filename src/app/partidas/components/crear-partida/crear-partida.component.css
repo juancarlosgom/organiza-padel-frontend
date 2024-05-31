@@ -1,13 +1,19 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 2000%;
+  max-height: 90%;
+  overflow: auto;
 }
 
-.example-full-width {
-  width: 100%;
+.modal-content {
+  padding: 20px;
 }
 
-td {
-  padding-right: 8px;
+@media screen and (max-width: 768px) {
+  .modal-content {
+    padding: 10px;
+  }
 }

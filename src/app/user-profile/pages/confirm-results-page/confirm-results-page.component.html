@@ -52,7 +52,7 @@
               <h3 class="mb-4">Confirmación del resultado</h3>
               <div class="row mt-4">
                 <div class="col-md-12 d-flex flex-wrap justify-content-center">
-                  <p class="me-4"><strong>Fecha:</strong> {{ game.fecha }}</p>
+                  <p class="me-4"><strong>Fecha:</strong> {{ game.fecha | date: 'dd/MM/yyyy'}}</p>
                   <p class="me-4"><strong>Hora:</strong> {{ game.horaInicio }} - {{game.horaFin}}</p>
                   <p class="me-4"><strong>Pista:</strong> {{ game.idPista }}</p>
                   <p><strong>Categoría:</strong> {{ game.categoria }}</p>

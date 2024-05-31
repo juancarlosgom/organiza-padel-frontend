@@ -15,4 +15,8 @@ export class HomePageComponent {
 
   }
 
+  openPageTournaments() {
+    this.router.navigate(['torneos']);
+  }
+
 }

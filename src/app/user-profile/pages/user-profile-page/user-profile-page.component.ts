@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class UserProfilePageComponent implements OnInit {
 
   private router = inject(Router);
+  public loading: boolean = false;
 
   private userProfileService = inject(UserProfileServiceService);
   public nombre?: string;
@@ -60,17 +61,16 @@ export class UserProfilePageComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('Cerrar sesión.');
-    this.userProfileService.logoutUser().subscribe(
-      //(response) => console.log(response),
-
-    );
+    //console.log('Cerrar sesión.');
+    this.loading = true;
+    this.userProfileService.logoutUser().subscribe();
     setTimeout(() => {
       localStorage.removeItem('token');
       if (localStorage.getItem('admin')) {
         localStorage.removeItem('admin');
       }
       window.location.reload();
+      this.loading = false;
     }, 2000);
 
   }

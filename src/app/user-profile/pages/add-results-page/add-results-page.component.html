@@ -58,7 +58,8 @@
               <strong>Categoría:</strong> {{game.categoria}}º
               <strong>Género:</strong>{{game.genero}}
             </li>
-            <li class="list-group-item d-flex justify-content-evenly"><strong>Fecha:</strong> {{game.fecha}}
+            <li class="list-group-item d-flex justify-content-evenly"><strong>Fecha:</strong> {{game.fecha | date:
+              'dd/MM/yyyy'}}
               <strong>Hora:</strong> {{game.horaInicio}} - {{game.horaFin}}
             </li>
             <li class="list-group-item d-flex justify-content-evenly">

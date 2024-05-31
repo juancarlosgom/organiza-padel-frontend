@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environments';
 import { AuthServiceService } from '../../services/auth-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-page',
@@ -15,6 +16,7 @@ export class LoginPageComponent {
   private router = inject(Router);
   private authService = inject(AuthServiceService);
   private tokenUser?: string;
+  public loading: boolean = false;
 
   public myForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -22,24 +24,27 @@ export class LoginPageComponent {
   });
 
   login(): void {
-
-    console.log('Login');
+    this.loading = true;
     const { email, password } = this.myForm.value;
     this.authService.login(email, password).
-      subscribe({
-        //next: () => this.router.navigateByUrl('/auth/login'),
-        next: (resp) => {
+      subscribe((resp) => {
+        if (resp.status) {
           if (resp.admin) {
             localStorage.setItem('admin', 'isAdmin');
           }
-          this.tokenUser = resp.token,
-            localStorage.setItem('token', this.tokenUser!),
-            console.log(resp),
-            window.location.reload();
-        },
-        error: (errorMessage) => {
-          console.log("Se dispara el error" + errorMessage);
+          this.tokenUser = resp.token;
+          localStorage.setItem('token', this.tokenUser!);
+          window.location.reload();
+        } else {
+          Swal.fire({
+            title: 'Email o password incorrectos',
+            icon: 'error',
+            confirmButtonText: 'Ok',
+          });
         }
+        setTimeout(() => {
+          this.loading = false;
+        }, 2000);
       });
     this.myForm.reset();
   }

@@ -46,10 +46,20 @@
         <div class="col-md-6">
           <label class="form-label">Password</label>
           <input type="password" class="form-control" formControlName="password">
+          @if (errorPassword) {
+          <p class="text-danger">
+            Las contraseña debe tener mínimo 4 carácteres.
+          </p>
+          }
         </div>
         <div class="col-md-6">
           <label class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" formControlName="passwordConfirm">
+          <input type="password" class="form-control" formControlName="password_confirmation">
+          @if (errorPassword) {
+          <p class="text-danger">
+            Las contraseñas deben coincidir.
+          </p>
+          }
         </div>
         <div class="col-md-6">
           <label class="form-label">Categoría</label>

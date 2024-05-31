@@ -17,7 +17,7 @@ export class EditProfilePageComponent implements OnInit {
   public user: User;
   private fb = inject(FormBuilder);
   public myForm: FormGroup = this.fb.group({
-    email: [{ value: '', disabled: true }, [Validators.required]],
+    email: [{ value: '' }, [Validators.required]],
     name: [{ value: '' }, [Validators.required]],
     dni: [{ value: '', disabled: true }, [Validators.required]],
     apellidos: [{ value: '' }, [Validators.required]],
@@ -76,7 +76,7 @@ export class EditProfilePageComponent implements OnInit {
     this.myForm.enable();
     this.userProfileService.updateDataUser(this.myForm.value)
       .subscribe((resp) => {
-        console.log(resp);
+        //console.log(resp);
         if (resp.status) {
           Swal.fire({
             title: 'Datos actualizados correctamente',

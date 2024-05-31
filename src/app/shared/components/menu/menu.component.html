@@ -1,11 +1,43 @@
-<div class="card mt-5">
+<!--<div>
+  @if (!isSmallScreen) {
   <p-menubar [model]="menuItems">
     <ng-template pTemplate="start">
       <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" />
     </ng-template>
-    <ng-template pTemplate="end">
-      <!--<input type="text" pInputText placeholder="Search" class="w-full" />-->
-      <p-menubar [model]="secondMenu"></p-menubar>
+    <ng-template pTemplate="end" class="bg-dark">
+      <p-menubar [model]="secondMenu" class="bg-dark"></p-menubar>
     </ng-template>
   </p-menubar>
-</div>
+  }@else {
+  <p-menubar [model]="menuItems">
+    <ng-template pTemplate="start">
+      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" />
+    </ng-template>
+  </p-menubar>
+  }
+</div>-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Inicio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Partidas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Partida 1</a>
+          <a class="dropdown-item" href="#">Partida 2</a>
+          <a class="dropdown-item" href="#">Partida 3</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Torneos</a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -14,49 +14,64 @@ export class RegisterPageComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthServiceService);
+  public errorPassword = false;
 
   public myForm: FormGroup = this.fb.group({
-    dni: ['', [Validators.required]],
+    dni: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
     nombre: ['', [Validators.required]],
     apellidos: ['', [Validators.required]],
-    email: ['', [Validators.required]],
-    telefono: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    telefono: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
     posicionPista: ['', [Validators.required]],
     tallaCamiseta: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(4)]],
-    passwordConfirm: ['', [Validators.required, Validators.minLength(4)]],
+    password_confirmation: ['', [Validators.required, Validators.minLength(4)]],
     categoria: ['', [Validators.required]],
     genero: ['', [Validators.required]],
     accept: ['', [Validators.requiredTrue]],
   });
 
   register() {
-    console.log('Registrador');
-    this.authService.register(this.myForm.value)
-      .subscribe((resp) => {
-        if (resp.status) {
-          Swal.fire({
-            title: 'Inscrito',
-            text: `Incrito correctamente`,
-            icon: 'success',
-            confirmButtonText: 'Ok',
-            willClose: () => {
-              this.router.navigateByUrl('/auth/login');
-            }
-          });
-        } else {
-          Swal.fire({
-            title: 'No inscrito',
-            text: `Error al inscribirte`,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-          });
+    let errors = false;
+    if (this.checkConfirmPassword(this.myForm.value.password, this.myForm.value.password_confirmation)) {
+      this.errorPassword = true;
+      errors = true;
+    } else {
+      this.errorPassword = false;
+    }
+    if (!errors) {
+      this.authService.register(this.myForm.value)
+        .subscribe((resp) => {
+          if (resp.status) {
+            this.myForm.reset();
+            Swal.fire({
+              title: 'Inscrito',
+              text: `Incrito correctamente`,
+              icon: 'success',
+              confirmButtonText: 'Ok',
+              willClose: () => {
+                this.router.navigateByUrl('/auth/login');
+              }
+            });
+          } else {
+            Swal.fire({
+              title: 'No inscrito',
+              text: `Error al inscribirte`,
+              icon: 'error',
+              confirmButtonText: 'Ok',
+            });
+          }
         }
+        );
+    }
+  }
 
+  checkConfirmPassword(password: string, passwordConfirm: string): boolean {
 
-      }
-      );
-    this.myForm.reset();
+    if (password !== passwordConfirm) {
+      return true;
+    }
+    return false;
   }
 
 
