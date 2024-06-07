@@ -10,7 +10,6 @@ export class HomePageComponent {
 
   private router = inject(Router);
 
-
   goReserveTrack() {
 
   }

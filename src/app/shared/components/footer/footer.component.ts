@@ -30,8 +30,7 @@ export class FooterComponent {
       html: `
         <p>En caso de que falte algún jugador por confirmar la partida, este resultado no se añadirá a la app. Por lo tanto,
         querrá decir que no se está de acuerdo con este resultado y no se sumarán ni restarán los puntos del ranking.
-        Podrán reclamar en caso de que se detecte mal uso de la app.
-        En nuestro correo proporcionado.</p>
+        Podrán reclamar en caso de que se detecte mal uso de la app en nuestro correo proporcionado.</p>
       `,
       confirmButtonText: 'Ok',
     });
@@ -41,9 +40,9 @@ export class FooterComponent {
     Swal.fire({
       icon: 'info',
       html: `
-        <p>Para crear una partida, deberea dirigise a:
+        <p>Para crear una partida, deberá dirigise a:
         partidas->crear partida donde debe seleccionar el día y fecha de la partida. Por último,
-        podrá elegir es tipo de partida y pinchará en <i>crear partida</i>.</p>
+        podrá elegir el tipo de partida y pinchará en <i>crear partida</i>.</p>
       `,
       confirmButtonText: 'Ok',
     });

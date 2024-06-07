@@ -1,5 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { UserProfileServiceService } from '../../../user-profile/services/user-profile-service.service';
 
 @Component({
   selector: 'shared-menu',
@@ -11,6 +12,8 @@ export class MenuComponent implements OnInit {
   public menuItems: MenuItem[] = [];
   public secondMenu: MenuItem[] = [];
   public isSmallScreen: boolean = false;
+  public loading: boolean = false;
+  private userProfileService = inject(UserProfileServiceService);
 
   //Escucho los eventos del elemento asociado cambio de tamaño de ventana
   @HostListener('window:resize', ['$event'])
@@ -77,11 +80,11 @@ export class MenuComponent implements OnInit {
       } else {
         this.secondMenu = [
           {
-            label: 'Login',
+            label: 'Iniciar Sesión',
             routerLink: 'auth/login'
           },
           {
-            label: 'Sing Up',
+            label: 'Registrarme',
             routerLink: 'auth/register'
           },
         ];
@@ -132,11 +135,11 @@ export class MenuComponent implements OnInit {
         });
       } else {
         this.menuItems.push({
-          label: 'Login',
+          label: 'Iniciar Sesión',
           routerLink: 'auth/login'
         });
         this.menuItems.push({
-          label: 'Sing Up',
+          label: 'Registrarme',
           routerLink: 'auth/register'
         });
       }
@@ -148,6 +151,28 @@ export class MenuComponent implements OnInit {
     this.isSmallScreen = window.innerWidth <= 960;
   }
 
+
+  logout(): void {
+    //console.log('Cerrar sesión.');
+    this.loading = true;
+    this.userProfileService.logoutUser().subscribe();
+    setTimeout(() => {
+      localStorage.removeItem('token');
+      if (localStorage.getItem('admin')) {
+        localStorage.removeItem('admin');
+      }
+      window.location.reload();
+      this.loading = false;
+    }, 2000);
+
+  }
+
+  checkUser(): boolean {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
 
 
 }
