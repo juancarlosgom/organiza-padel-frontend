@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { UserProfileServiceService } from '../../../user-profile/services/user-profile-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shared-menu',
@@ -14,6 +15,7 @@ export class MenuComponent implements OnInit {
   public isSmallScreen: boolean = false;
   public loading: boolean = false;
   private userProfileService = inject(UserProfileServiceService);
+  private router = inject(Router);
 
   //Escucho los eventos del elemento asociado cambio de tamaño de ventana
   @HostListener('window:resize', ['$event'])
@@ -161,7 +163,9 @@ export class MenuComponent implements OnInit {
       if (localStorage.getItem('admin')) {
         localStorage.removeItem('admin');
       }
-      window.location.reload();
+      this.router.navigate(['']).then(() => {
+        window.location.reload();
+      });
       this.loading = false;
     }, 2000);
 

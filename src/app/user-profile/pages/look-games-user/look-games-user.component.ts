@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Game } from '../../interfaces/games.interface';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-look-games-user',
@@ -17,6 +18,7 @@ export class LookGamesUserComponent implements OnInit {
   private gamesUser: Game[] = [];
   public openGames: Game[] = [];
   public reserveGames: Game[] = [];
+  private router = inject(Router);
 
   private fb = inject(FormBuilder);
 
@@ -47,7 +49,10 @@ export class LookGamesUserComponent implements OnInit {
       if (result.isConfirmed) {
         this.userProfileService.deleteReserve(idReserve)
           .subscribe((resp) => {
-            window.location.reload();
+            //window.location.reload();
+            this.router.navigate(['']).then(() => {
+              this.router.navigate(['userProfile/look-game-open']);
+            });
           });
       }
     });
@@ -66,7 +71,10 @@ export class LookGamesUserComponent implements OnInit {
           .subscribe((resp) => {
             console.log(resp);
             //setTimeout(() => {
-            window.location.reload();
+            //window.location.reload();
+            this.router.navigate(['']).then(() => {
+              this.router.navigate(['userProfile/look-game-open']);
+            });
             //}, 2000);
 
             //console.log(resp);

@@ -29,20 +29,6 @@ export class CrearPartidaComponent implements OnInit {
   }
 
   public myForm: FormGroup = this.fb.group({
-    /*nombre1: ['', [Validators.required]],
-    email1: ['', [Validators.required]],
-    posicion1: ['', [Validators.required]],
-    nombre2: ['',],
-    email2: ['',],
-    posicion2: ['',],
-    nombre3: ['',],
-    email3: ['',],
-    posicion3: ['',],
-    nombre4: ['',],
-    email4: ['',],
-    posicion4: ['',],
-    genero: ['', Validators.required],
-    categoria: ['', Validators.required],*/
     nombre: [{ value: '', disabled: true }, [Validators.required]],
     email: [{ value: '', disabled: true }, [Validators.required]],
     posicion: ['', [Validators.required]],
@@ -84,7 +70,10 @@ export class CrearPartidaComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Ok',
             willClose: () => {
-              window.location.reload();
+              //window.location.reload();
+              this.router.navigate(['']).then(() => {
+                this.router.navigate(['partidas/new']);
+              });
             },
           });
         } else {
@@ -106,13 +95,6 @@ export class CrearPartidaComponent implements OnInit {
           });
         }
       });
-    /*this.authService.register(nombre, email, password)
-      .subscribe({
-        next: () => this.router.navigateByUrl('/auth/login'),
-        error: (errorMessage) => {
-          console.log(errorMessage);
-        }
-      });*/
 
   }
 

@@ -31,15 +31,6 @@ export class ModalService {
     this.matDialog.closeAll();
   }
 
-  /*getDataUser(): Observable<any> {
-    const url = `${this.baseUrl}/get-user`;
-    const token = localStorage.getItem('token');
-    //Autorización para backend
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
-
-    return this.http.post(url, '', { headers });
-  }*/
   getDataGame(idGame: number): Observable<any> {
     const url = `${this.baseUrl}/get-data-game`;
     const token = localStorage.getItem('token');

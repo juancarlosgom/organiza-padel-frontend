@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UserProfileServiceService } from '../../services/user-profile-service.service';
 import { ConfirmGame } from '../../interfaces/confirmGames.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-results-page',
@@ -29,7 +30,7 @@ export class ConfirmResultsPageComponent implements OnInit {
   private userProfileService = inject(UserProfileServiceService);
   private idUser: number = -1;
   public confirmGames: ConfirmGame[] = [];
-
+  private router = inject(Router);
 
   public myFormFilter: FormGroup = this.fb.group({
     filterHour: [''],
@@ -103,7 +104,10 @@ export class ConfirmResultsPageComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Ok',
             willClose: () => {
-              window.location.reload();
+              //window.location.reload();
+              this.router.navigate(['']).then(() => {
+                this.router.navigate(['userProfile/confirm-results-game']);
+              });
             },
           });
         } else {

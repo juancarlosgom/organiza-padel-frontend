@@ -4,6 +4,8 @@ import { PartidasService } from '../../services/partidas-service.service';
 import { Observable } from 'rxjs';
 import { HorarioPista } from '../../interfaces/horarioPista.interface';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-reservar-pista-page',
@@ -12,197 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ReservarPistaPageComponent implements OnInit {
 
-  /*fechaActual: Date = new Date();
-  fechaMostrar: string = '';
-  contDays: number = 0;
-  private partidasService = inject(PartidasService);
-  private pistasReservadas: Pista[] = [];
-  private horaInicio: string[] = [
-    '08:30',
-    '10:00',
-    '11:30',
-    '13:00',
-    '14:30',
-    '16:00',
-    '17:30',
-    '19:00',
-    '20:30',
-  ];
-  private horaFin: string[] = [
-    '10:00',
-    '11:30',
-    '13:00',
-    '14:30',
-    '16:00',
-    '17:30',
-    '19:00',
-    '20:30',
-    '22:00',
-  ];
-
-  public pistas: Pista[] = [];
-
-  ngOnInit(): void {
-    //Actualizar fecha actual
-    this.partidasService.getDate(this.contDays).
-      subscribe(
-        (resp) => {
-          this.fechaActual = new Date(resp.datos);
-          this.pistas = this.getTracks();
-          this.pistasReservadas = resp.pistasReservadas;
-          this.contDays = resp.diasSumados;
-          this.fechaMostrar = this.changeDateString(this.fechaActual);
-          this.mountTracks();
-
-        },
-
-      );
-
-  }
-
-  // Avanzar un día
-  avanzarDia() {
-    this.contDays++;
-    this.partidasService.avanzarDia(this.contDays).
-      subscribe(
-        (resp) => {
-          this.fechaActual = new Date(resp.datos);
-          this.pistas = this.getTracks();
-          this.pistasReservadas = resp.pistasReservadas;
-          this.contDays = resp.diasSumados;
-          this.fechaMostrar = this.changeDateString(this.fechaActual);
-          this.mountTracks();
-        }
-      );
-
-  }
-
-  // Método para retroceder un día
-  retrocederDia() {
-    if ((this.contDays - 1) < 0) {
-      Swal.fire({
-        title: 'Error',
-        text: `No puedes reservar pistas en fechas anteriores a la fecha actual`,
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-    } else {
-      this.contDays--;
-      this.partidasService.avanzarDia(this.contDays).
-        subscribe(
-          (resp) => {
-            this.fechaActual = new Date(resp.datos);
-            this.pistas = this.getTracks();
-            this.pistasReservadas = resp.pistasReservadas;
-            this.contDays = resp.diasSumados;
-            this.fechaMostrar = this.changeDateString(this.fechaActual);
-            this.mountTracks();
-          }
-        );
-    }
-  }
-
-  //Convertir fecha en string
-  changeDateString(fecha: Date): string {
-    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    const dia = fecha.getDate();
-    const mes = meses[fecha.getMonth()];
-    const anyo = fecha.getFullYear();
-    return (dia + ' - ') + mes + ' - ' + (anyo + '');
-  }
-
-  //Reservar pistas
-  reserveTrack(horaInicio: string, horaFin: string, idPista: number) {
-    this.partidasService.reserveTrack(horaInicio, horaFin, idPista, this.fechaActual.toISOString())
-      .subscribe(
-        (resp) => {
-          console.log(resp);
-          if (resp.status) {
-            Swal.fire({
-              title: 'Pista reservada',
-              text: `
-                Pista ${idPista} reservada el: ${this.fechaMostrar}.
-                De: ${horaInicio} a ${horaFin}.
-              `,
-              icon: 'success',
-              confirmButtonText: 'Ok',
-              willClose: () => {
-                window.location.reload();
-              }
-            });
-          } else {
-            console.error('La reserva de pista no fue exitosa');
-          }
-        }
-      );
-  }
-
-  //Obtener pistas reservadas
-  getTracksRerve(tracks: Observable<Pista>) {
-    const getTracks: Pista[] = [];
-    tracks.forEach((pista: Pista) => {
-      console.log(pista);
-      getTracks.push(pista);
-    });
-  }
-
-  getTracks(): Pista[] {
-    const pista: Pista[] = [
-      {
-        idPista: 1,
-        horario: this.horaInicio.map((horaInicio, index) => ({
-          horaInicio: horaInicio,
-          horaFin: this.horaFin[index],
-          fecha: this.fechaActual.toISOString(),
-          reservado: false,
-        })),
-      },
-      {
-        idPista: 2,
-        horario: this.horaInicio.map((horaInicio, index) => ({
-          horaInicio: horaInicio,
-          horaFin: this.horaFin[index],
-          fecha: this.fechaActual.toISOString(),
-          reservado: false,
-        })),
-      },
-      {
-        idPista: 3,
-        horario: this.horaInicio.map((horaInicio, index) => ({
-          horaInicio: horaInicio,
-          horaFin: this.horaFin[index],
-          fecha: this.fechaActual.toISOString(),
-          reservado: false,
-        })),
-      },
-      {
-        idPista: 4,
-        horario: this.horaInicio.map((horaInicio, index) => ({
-          horaInicio: horaInicio,
-          horaFin: this.horaFin[index],
-          fecha: this.fechaActual.toISOString(),
-          reservado: false,
-        })),
-      },
-    ];
-
-    return pista;
-  }
-
-  mountTracks() {
-    this.pistas.forEach((pista) => {
-      this.pistasReservadas.forEach((pistaR: any) => {
-        if (pista.idPista === pistaR.idPista) {
-          pista.horario.forEach((horario: HorarioPista) => {
-            if ((horario.horaInicio === pistaR.horaInicio) && (horario.horaFin === pistaR.horaFin)) {
-              horario.reservado = true;
-            }
-
-          });
-        }
-      });
-    });
-  }*/
+  private router = inject(Router);
   fechaActualizada: string;
   hourFilter: string = '';
   private partidasService = inject(PartidasService);
@@ -259,7 +71,10 @@ export class ReservarPistaPageComponent implements OnInit {
         icon: 'error',
         confirmButtonText: 'Ok',
         willClose: () => {
-          window.location.reload();
+          //window.location.reload();
+          this.router.navigate(['']).then(() => {
+            this.router.navigate(['partidas/reserveTrack']);
+          });
         }
       });
     } else {
@@ -301,7 +116,10 @@ export class ReservarPistaPageComponent implements OnInit {
               icon: 'success',
               confirmButtonText: 'Ok',
               willClose: () => {
-                window.location.reload();
+                //window.location.reload();
+                this.router.navigate(['']).then(() => {
+                  this.router.navigate(['partidas/reserveTrack']);
+                });
               }
             });
           } else {
@@ -338,7 +156,9 @@ export class ReservarPistaPageComponent implements OnInit {
               icon: 'error',
               confirmButtonText: 'Ok',
               willClose: () => {
-                window.location.reload();
+                this.router.navigate(['']).then(() => {
+                  this.router.navigate(['partidas/reserveTrack']);
+                });
               }
             });
           }

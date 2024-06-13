@@ -20,16 +20,6 @@ export class PartidasService {
 
   constructor() { }
 
-  /*getDate(dias: number): Observable<any> {
-    const url = `${this.baseUrl}/get-date`;
-    const token = localStorage.getItem('token');
-    //Autorización para backend
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
-
-    return this.http.post(url, [dias], { headers });
-  }*/
-
   getDateUpdate(fecha: string): Observable<any> {
     const url = `${this.baseUrl}/get-fecha`;
     const token = localStorage.getItem('token');
@@ -70,17 +60,6 @@ export class PartidasService {
 
     return this.http.post(url, [idPartida, numberPlayer], { headers });
   }
-
-
-  // Método para avanzar un día
-  /*avanzarDia(diasMas: number) {
-    return this.getDate(diasMas);
-  }
-
-  // Método para retroceder un día
-  retrocederDia(diasMenos: number) {
-    return this.getDate(diasMenos);
-  }*/
 
 
 

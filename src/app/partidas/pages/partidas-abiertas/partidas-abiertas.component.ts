@@ -4,6 +4,7 @@ import { PartidasService } from '../../services/partidas-service.service';
 import { OpenGames } from '../../interfaces/openGames.interfaces';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-partidas-abiertas',
@@ -12,6 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class PartidasAbiertasComponent implements OnInit {
 
+  private router = inject(Router);
   private gamesService = inject(PartidasService);
   private fb = inject(FormBuilder);
 
@@ -49,7 +51,10 @@ export class PartidasAbiertasComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Ok',
             willClose: () => {
-              window.location.reload();
+              //window.location.reload();
+              this.router.navigate(['']).then(() => {
+                this.router.navigate(['partidas/open']);
+              });
             }
           });
         } else {

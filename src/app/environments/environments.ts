@@ -1,5 +1,5 @@
 
 
 export const environment = {
-  baseUrl: 'http://localhost/organiza-padel/public/api',
+  baseUrl: 'https://organizapadel.es/backend/api',
 }

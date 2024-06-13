@@ -1,35 +1,6 @@
 <div class="container">
   <div class="row">
     @if (openGames.length > 0) {
-    <!--<div class="container mb-2">
-      <div class="row mt-4">
-        <div class="col-md-4">
-          <select class="form-control" id="filtroHora">
-            <option value="">Hora de Inicio</option>
-            <option value="08:30">08:30</option>
-            <option value="10:00">10:00</option>
-            <option value="11:30">11:30</option>
-            <option value="13:00">13:00</option>
-            <option value="14:30">14:30</option>
-            <option value="16:00">16:00</option>
-            <option value="17:30">17:30</option>
-            <option value="19:00">19:00</option>
-            <option value="20:30">20:30</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <input type="date" class="form-control" id="filtroFecha" placeholder="Fecha">
-        </div>
-        <div class="col-md-4">
-          <select class="form-control" id="filtroCategoria">
-            <option value="">Categoría</option>
-            <option value="Mixta">Mixta</option>
-            <option value="F">Femenina</option>
-            <option value="M">Masculina</option>
-          </select>
-        </div>
-      </div>
-    </div>-->
     <div class="container mb-2">
       <form (ngSubmit)="filterGame()" [formGroup]="myForm">
         <div class="row mt-4">

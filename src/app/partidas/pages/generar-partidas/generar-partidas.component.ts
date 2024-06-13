@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HorarioPista } from '../../interfaces/horarioPista.interface';
 import Swal from 'sweetalert2';
 import { ModalServiceService } from '../../services/modal-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-generar-partidas',
@@ -14,7 +15,7 @@ import { ModalServiceService } from '../../services/modal-service.service';
 export class GenerarPartidasComponent implements OnInit {
 
   private modalService = inject(ModalServiceService);
-
+  private router = inject(Router);
   fechaActualizada: string;
   hourFilter: string = '';
   private partidasService = inject(PartidasService);
@@ -71,7 +72,10 @@ export class GenerarPartidasComponent implements OnInit {
         icon: 'error',
         confirmButtonText: 'Ok',
         willClose: () => {
-          window.location.reload();
+          //window.location.reload();
+          this.router.navigate(['']).then(() => {
+            this.router.navigate(['partidas/new']);
+          });
         }
       });
     } else {
@@ -97,55 +101,7 @@ export class GenerarPartidasComponent implements OnInit {
   //Crear partida para que puedan los demás jugadores
   createGame(startingHour: string, startingEnd: string, idTrack: number) {
     this.modalService.openModal(startingHour, startingEnd, idTrack, this.fechaActualizada);
-    /*this.partidasService.reserveTrack(horaInicio, horaFin, idPista, this.fechaActualizada)
-      .subscribe(
-        (resp) => {
-          console.log(resp);
-          if (resp.status) {
-            Swal.fire({
-              title: 'Pista reservada',
-              text: `
-                Pista ${idPista} reservada el: ${this.fechaActualizada}.
-                De: ${horaInicio} a ${horaFin}.
-              `,
-              icon: 'success',
-              confirmButtonText: 'Ok',
-              willClose: () => {
-                window.location.reload();
-              }
-            });
-          } else {
-            console.error('La reserva de pista no fue exitosa');
-          }
-        }
-      );*/
-
   }
-
-  /*reserveTrackOpen(horaInicio: string, horaFin: string, idPista: number) {
-    this.partidasService.reserveTrack(horaInicio, horaFin, idPista, this.fechaActualizada, true)
-      .subscribe(
-        (resp) => {
-          console.log(resp);
-          if (resp.status) {
-            Swal.fire({
-              title: 'Pista reservada',
-              text: `
-                Pista ${idPista} reservada el: ${this.fechaActualizada}.
-                De: ${horaInicio} a ${horaFin}.
-              `,
-              icon: 'success',
-              confirmButtonText: 'Ok',
-              willClose: () => {
-                window.location.reload();
-              }
-            });
-          } else {
-            console.error('La reserva de pista no fue exitosa');
-          }
-        }
-      );
-  }*/
 
   // Actualizar el día para mostrar pistas de ese dia
   actualizarDia() {
@@ -163,7 +119,10 @@ export class GenerarPartidasComponent implements OnInit {
               icon: 'error',
               confirmButtonText: 'Ok',
               willClose: () => {
-                window.location.reload();
+                //window.location.reload();
+                this.router.navigate(['']).then(() => {
+                  this.router.navigate(['partidas/new']);
+                });
               }
             });
           }

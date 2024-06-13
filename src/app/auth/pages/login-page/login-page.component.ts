@@ -34,7 +34,9 @@ export class LoginPageComponent {
           }
           this.tokenUser = resp.token;
           localStorage.setItem('token', this.tokenUser!);
-          window.location.reload();
+          this.router.navigate(['']).then(() => {
+            window.location.reload();
+          });
         } else {
           Swal.fire({
             title: 'Email o password incorrectos',

@@ -2,40 +2,9 @@
 
 <div class="row">
   @for (tournament of tournaments; track $index) {
-  <!--<div class="col-md-4 mb-4">
-    <div class="card h-100">
-      <img src="{{tournament.img}}" class="card-img-top img-fluid img-thumbnail" alt="Torneo 1">
-      <div class="card-body">
-        <h5 class="card-title">{{tournament.title}}</h5>
-        <p class="card-text">{{tournament.description}}</p>
-        <a class="btn btn-primary">Inscribirme</a>
-      </div>
-    </div>
-  </div>
   <div class="col-md-4 mb-4">
     <div class="card h-100">
-      <img src="{{tournament.img}}" class="card-img-top img-fluid img-thumbnail" alt="Torneo 1">
-      <div class="card-body" style="min-height: 100px;">
-        <h5 class="card-title">{{tournament.title}}</h5>
-        <p class="card-text">{{tournament.description}}</p>
-        <a class="btn btn-primary">Inscribirme</a>
-      </div>
-    </div>
-  </div>-->
-  <!--<div class="col-md-4 mb-4">
-    <div class="card h-100">
-      <img src="http://localhost/organiza-padel/public/torneos/{{tournament.urlImg}}"
-        class="card-img-top img-fluid img-thumbnail" alt="{{tournament.titulo}}">
-      <div class="card-body d-flex flex-column align-items-center justify-content-center" style="min-height: 200px;">
-        <h5 class="card-title">{{tournament.titulo}}</h5>
-        <p class="card-text">{{tournament.descripcion}}</p>
-        <a class="btn btn-primary">Inscribirme</a>
-      </div>
-    </div>
-  </div>-->
-  <div class="col-md-4 mb-4">
-    <div class="card h-100">
-      <img src="http://localhost/organiza-padel/public/torneos/{{tournament.urlImg}}"
+      <img src="https://organizapadel.es/backend/public/torneos/{{tournament.urlImg}}"
         class="card-img-top img-fluid img-thumbnail" alt="{{tournament.titulo}}">
       <div class="card-body d-flex flex-column align-items-center justify-content-center" style="min-height: 200px;">
         <h5 class="card-title">{{tournament.titulo}}</h5>
@@ -49,31 +18,6 @@
       </div>
     </div>
   </div>
-
-  <!--<div class="col-md-4 mb-4">
-    <div class="card h-100" style="background-image: url({{tournament.imgBackgroun}});">
-      <img src="{{tournament.img}}" class="card-img-top img-fluid img-thumbnail" alt="Torneo 1">
-      <div class="card-body d-flex flex-column align-items-center justify-content-center" style="min-height: 200px;">
-        <h5 class="card-title">{{tournament.title}}</h5>
-        <p class="card-text">{{tournament.description}}</p>
-        <a class="btn btn-primary">Inscribirme</a>
-      </div>
-    </div>
-  </div>-->
-  <!--<div class="col-md-4 mb-4">
-    <div class="card h-100"
-      style="background-image: url({{tournament.imgBackground}}); background-size: cover; background-repeat: no-repeat; background-position: center; filter: brightness(0.8);">
-      <img src="{{tournament.img}}" class="card-img-top img-fluid img-thumbnail" alt="Torneo 1">
-      <div class="card-body d-flex flex-column align-items-center justify-content-center" style="min-height: 200px;">
-        <h5 class="card-title">{{tournament.title}}</h5>
-        <p class="card-text">{{tournament.description}}</p>
-        <a class="btn btn-primary">Inscribirme</a>
-      </div>
-    </div>
-  </div>-->
-
-
-
   }
 
 </div>
