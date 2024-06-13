@@ -25,6 +25,7 @@ export class AddResultsPageComponent {
     filterDate: [''],
     filterGender: [''],
   });
+  public initialForm = this.myForm.value;
 
   ngOnInit(): void {
     //window.location.reload();
@@ -77,7 +78,7 @@ export class AddResultsPageComponent {
     this.adminGames.forEach((game) => {
       game.show = false;
     });
-    this.myForm.reset();
+    this.myForm.patchValue(this.initialForm);
   }
 
 

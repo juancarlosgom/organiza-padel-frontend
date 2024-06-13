@@ -5,7 +5,7 @@
       <form (ngSubmit)="filterGame()" [formGroup]="myForm">
         <div class="row mt-4">
           <div class="col-md-4">
-            <select class="form-control" id="filtroHora" formControlName="filterHour">
+            <select class="form-select" id="filtroHora" formControlName="filterHour">
               <option value="">Hora de Inicio</option>
               <option value="08:30">08:30</option>
               <option value="10:00">10:00</option>
@@ -22,7 +22,7 @@
             <input type="date" class="form-control" id="filtroFecha" placeholder="Fecha" formControlName="filterDate">
           </div>
           <div class="col-md-4">
-            <select class="form-control" id="filtroCategoria" formControlName="filterGender">
+            <select class="form-select" id="filtroCategoria" formControlName="filterGender">
               <option value="">Categoría</option>
               <option value="Mixta">Mixta</option>
               <option value="F">Femenina</option>
@@ -31,12 +31,13 @@
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-md-12 text-right">
+          <div class="col-12 d-flex justify-content-end align-items-center">
             <button type="submit" class="btn btn-primary">Filtrar</button>
+            <button type="button" class="btn btn-primary" style="margin-left: 4px;" (click)="removeFilter()">Quitar
+              filtros</button>
           </div>
         </div>
       </form>
-      <button type="submit" class="btn btn-primary ml-3" (click)="removeFilter()">Quitar filtros</button>
     </div>
     @for (game of openGames; track $index) {
     @if(!game.show){

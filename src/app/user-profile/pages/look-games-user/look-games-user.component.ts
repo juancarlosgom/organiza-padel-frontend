@@ -27,10 +27,12 @@ export class LookGamesUserComponent implements OnInit {
     filterDate: [''],
     filterGender: [''],
   });
+  public initialMyForm = this.myForm.value;
   public myFormReserve: FormGroup = this.fb.group({
     filterHourReserve: [''],
     filterDateReserve: [''],
   });
+  public initialFormReserve = this.myFormReserve.value;
 
   ngOnInit(): void {
     //window.location.reload();
@@ -149,7 +151,7 @@ export class LookGamesUserComponent implements OnInit {
     this.openGames.forEach((game) => {
       game.show = false;
     });
-    this.myForm.reset();
+    this.myForm.patchValue(this.initialMyForm);
   }
 
   filterReserve() {
@@ -174,7 +176,7 @@ export class LookGamesUserComponent implements OnInit {
     this.reserveGames.forEach((game) => {
       game.show = false;
     });
-    this.myFormReserve.reset();
+    this.myFormReserve.patchValue(this.initialFormReserve);
   }
 
 

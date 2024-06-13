@@ -14,7 +14,7 @@
                 <h3 class="card-title">Pareja 1</h3>
                 <div class="form-group">
                   <label for="jugador1">Jugador 1</label>
-                  <select class="form-control" id="jugador1" formControlName="jugador1" (focus)="checkValuesLook1()"
+                  <select class="form-select" id="jugador1" formControlName="jugador1" (focus)="checkValuesLook1()"
                     (change)="addValuePlayer1()">
                     <option value="">Elige un jugador</option>
                     @if (!j11) {
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                   <label for="jugador2">Jugador 2</label>
-                  <select class="form-control" id="jugador2" formControlName="jugador2" (focus)="checkValuesLook2()"
+                  <select class="form-select" id="jugador2" formControlName="jugador2" (focus)="checkValuesLook2()"
                     (change)="addValuePlayer2()">
                     <option value="">Elige un jugador</option>
                     @if (!j21) {
@@ -60,7 +60,7 @@
                 <h3 class="card-title">Pareja 2</h3>
                 <div class="form-group">
                   <label for="jugador3">Jugador 3</label>
-                  <select class="form-control" id="jugador3" formControlName="jugador3" (focus)="checkValuesLook3()"
+                  <select class="form-select" id="jugador3" formControlName="jugador3" (focus)="checkValuesLook3()"
                     (change)="addValuePlayer3()">
                     <option value="">Elige un jugador</option>
                     @if (!j31) {
@@ -79,7 +79,7 @@
                 </div>
                 <div class="form-group">
                   <label for="jugador4">Jugador 4</label>
-                  <select class="form-control" id="jugador4" formControlName="jugador4" (focus)="checkValuesLook4()"
+                  <select class="form-select" id="jugador4" formControlName="jugador4" (focus)="checkValuesLook4()"
                     (change)="addValuePlayer4()">
                     <option value="">Elige un jugador</option>
                     @if (!j41) {
@@ -102,7 +102,7 @@
             <div class="d-flex flex-column flex-md-row justify-content-between">
               <div class="form-group mb-2 col-md-6">
                 <label for="parejaGanadora">¿Pareja ganadora?</label>
-                <select class="form-control" formControlName="parejaGanadora">
+                <select class="form-select" formControlName="parejaGanadora">
                   <option value="">Elige pareja ganadora</option>
                   <option value="1">Pareja 1</option>
                   <option value="2">Pareja 2</option>

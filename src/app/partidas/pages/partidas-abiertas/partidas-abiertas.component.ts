@@ -22,6 +22,7 @@ export class PartidasAbiertasComponent implements OnInit {
     filterDate: [''],
     filterGender: [''],
   });
+  public initialFormValue = this.myForm.value;
   /*filterHour?: string;
   filterDate?: string;
   filterCategory?: string;*/
@@ -108,7 +109,7 @@ export class PartidasAbiertasComponent implements OnInit {
     this.openGames.forEach((game) => {
       game.show = false;
     });
-    this.myForm.reset();
+    this.myForm.patchValue(this.initialFormValue);
   }
 
 

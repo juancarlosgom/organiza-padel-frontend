@@ -28,7 +28,10 @@
               </div>
               <div class="form-group col-md-2">
                 <label for="genero">Género:</label>
-                <input type="text" formControlName="genero" class="form-control" />
+                <select class="form-select" formControlName="genero">
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                </select>
               </div>
               <div class="form-group col-md-2">
                 <label for="categoria">Categoria:</label>
@@ -36,7 +39,11 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="posicionPista">Posición pista:</label>
-                <input type="text" formControlName="posicionPista" class="form-control" />
+                <select class="form-select" formControlName="posicionPista">
+                  <option value="ambas">Indiferente</option>
+                  <option value="derecha">Drive</option>
+                  <option value="reves">Revés</option>
+                </select>
               </div>
             </div>
             <div class="row">
@@ -46,7 +53,13 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="tallaCamiseta">Talla camiseta:</label>
-                <input type="text" formControlName="tallaCamiseta" class="form-control" />
+                <select class="form-select" formControlName="tallaCamiseta">
+                  <option value="xs">XS</option>
+                  <option value="s">S</option>
+                  <option value="m">M</option>
+                  <option value="l">L</option>
+                  <option value="xl">XL</option>
+                </select>
               </div>
               <div class="form-group col-md-4">
                 <label for="telefono">Teléfono:</label>

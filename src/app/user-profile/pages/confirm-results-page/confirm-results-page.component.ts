@@ -37,6 +37,7 @@ export class ConfirmResultsPageComponent implements OnInit {
     filterDate: [''],
     filterGender: [''],
   });
+  public initialForm = this.myForm.value;
 
   ngOnInit(): void {
     //window.location.reload();
@@ -85,7 +86,7 @@ export class ConfirmResultsPageComponent implements OnInit {
     this.confirmGames.forEach((game) => {
       game.show = false;
     });
-    this.myForm.reset();
+    this.myForm.patchValue(this.initialForm);
   }
 
   confirmResult(idResult: number, game: ConfirmGame) {
